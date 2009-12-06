@@ -52,6 +52,17 @@ echo form_open('config/save/',array('id'=>'config_form'));
 	</div>
 </div>
 
+<div class="field_row clearfix">	
+<?php echo form_label($this->lang->line('config_currency_locale').':', 'currency_locale',array('class'=>'wide required')); ?>
+	<div class='form_field'>
+	<?php echo form_input(array(
+		'name'=>'currency_locale',
+		'id'=>'currency_locale',
+		'size'=>'4',
+		'value'=>$this->config->item('currency_locale')));?>
+	</div>
+</div>
+
 
 <div class="field_row clearfix">	
 <?php echo form_label($this->lang->line('common_email').':', 'email',array('class'=>'wide')); ?>
@@ -147,6 +158,7 @@ $(document).ready(function()
     			required:true,
     			number:true
     		},
+				currency_symbol: "required",
     		email:"email",
     		website:"url",
     		return_policy: "required"    		
@@ -161,6 +173,7 @@ $(document).ready(function()
     			required:"<?php echo $this->lang->line('config_default_tax_rate_required'); ?>",
     			number:"<?php echo $this->lang->line('config_default_tax_rate_number'); ?>"
     		},
+				currency_symbol: "<?php echo $this->lang->line('config_currency_symbol_required'); ?>",
      		email: "<?php echo $this->lang->line('common_email_invalid_format'); ?>",
      		website:"<?php echo $this->lang->line('config_company_website_url'); ?>",
      		return_policy:"<?php echo $this->lang->line('config_return_policy_required'); ?>"
