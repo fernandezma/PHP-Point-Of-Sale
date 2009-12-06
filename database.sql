@@ -32,6 +32,7 @@ INSERT INTO `phppos_app_config` VALUES ('phone', '555-555-5555');
 INSERT INTO `phppos_app_config` VALUES ('email', 'admin@phppointofsale.com');
 INSERT INTO `phppos_app_config` VALUES ('fax', '');
 INSERT INTO `phppos_app_config` VALUES ('default_tax_rate', '8');
+INSERT INTO `phppos_app_config` VALUES ('currency_locale', 'en_US');
 INSERT INTO `phppos_app_config` VALUES ('website', '');
 INSERT INTO `phppos_app_config` VALUES ('version', '10.0');
 INSERT INTO `phppos_app_config` VALUES ('return_policy', 'Test');

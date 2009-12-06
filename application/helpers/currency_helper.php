@@ -1,7 +1,8 @@
 <?php
 function to_currency($number)
 {
-	setlocale(LC_MONETARY, 'en_US');
+	$CI =& get_instance();
+	setlocale(LC_MONETARY, $CI->config->item('currency_locale'));
 	return money_format('%n', $number);
 }
 ?>
