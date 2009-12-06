@@ -57,6 +57,8 @@ class Items extends Secure_area implements iData_controller
 	function view($item_id=-1)
 	{
 		$data['item_info']=$this->Item->get_info($item_id);
+		$data['item_tax_info']=$this->Item_taxes->get_info($item_id);
+		$data['default_tax_rate']=($item_id==-1) ? $this->Appconfig->get('default_tax_rate') : '';
 		$this->load->view("items/form",$data);
 	}
 	
@@ -73,7 +75,6 @@ class Items extends Secure_area implements iData_controller
 		'category'=>$this->input->post('category'),
 		'item_number'=>$this->input->post('item_number')=='' ? null:$this->input->post('item_number'),
 		'unit_price'=>$this->input->post('unit_price'),
-		'tax_percent'=>$this->input->post('tax_percent'),
 		'quantity'=>$this->input->post('quantity'),
 		'reorder_level'=>$this->input->post('reorder_level')
 		);
@@ -85,12 +86,25 @@ class Items extends Secure_area implements iData_controller
 			{
 				echo json_encode(array('success'=>true,'message'=>$this->lang->line('items_successful_adding').' '.
 				$item_data['name'],'item_id'=>$item_data['item_id']));
+				$item_id = $item_data['item_id'];
 			}
 			else //previous item
 			{
 				echo json_encode(array('success'=>true,'message'=>$this->lang->line('items_successful_updating').' '.
 				$item_data['name'],'item_id'=>$item_id));
 			}
+			
+			$items_taxes_data = array();
+			$tax_names = $this->input->post('tax_names');
+			$tax_percents = $this->input->post('tax_percents');
+			for($k=0;$k<count($tax_percents);$k++)
+			{
+				if (is_numeric($tax_percents[$k]))
+				{
+					$items_taxes_data[] = array('name'=>$tax_names[$k], 'percent'=>$tax_percents[$k] );
+				}
+			}
+			$this->Item_taxes->save($items_taxes_data, $item_id);
 		}
 		else//failure
 		{	
@@ -107,14 +121,27 @@ class Items extends Secure_area implements iData_controller
 		
 		foreach($_POST as $key=>$value)
 		{
-			if($value!='' and $key!='item_ids')
+			if($value!='' and !(in_array($key, array('item_ids', 'tax_names', 'tax_percents'))))
 			{
 				$item_data["$key"]=$value;
 			}
 		}
 		
-		if($this->Item->update_multiple($item_data,$items_to_update))
+		//Item data could be empty if tax information is being updated
+		if(empty($item_data) || $this->Item->update_multiple($item_data,$items_to_update))
 		{
+			$items_taxes_data = array();
+			$tax_names = $this->input->post('tax_names');
+			$tax_percents = $this->input->post('tax_percents');
+			for($k=0;$k<count($tax_percents);$k++)
+			{
+				if (is_numeric($tax_percents[$k]))
+				{
+					$items_taxes_data[] = array('name'=>$tax_names[$k], 'percent'=>$tax_percents[$k] );
+				}
+			}
+			$this->Item_taxes->save_multiple($items_taxes_data, $items_to_update);
+			
 			echo json_encode(array('success'=>true,'message'=>$this->lang->line('items_successful_bulk_edit')));
 		}
 		else

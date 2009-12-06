@@ -40,7 +40,6 @@ else
 <th style="width:11%;"><?php echo $this->lang->line('common_delete'); ?></th>
 <th style="width:30%;"><?php echo $this->lang->line('sales_item_name'); ?></th>
 <th style="width:11%;"><?php echo $this->lang->line('sales_price'); ?></th>
-<th style="width:11%;"><?php echo $this->lang->line('sales_tax_percent'); ?></th>
 <th style="width:11%;"><?php echo $this->lang->line('sales_quantity'); ?></th>
 <th style="width:11%;"><?php echo $this->lang->line('sales_total'); ?></th>
 <th style="width:11%;"><?php echo $this->lang->line('sales_edit'); ?></th>
@@ -70,21 +69,18 @@ else
 		{ 
 		?>
 			<td><?php echo form_input(array('name'=>'price','value'=>$item['price'],'size'=>'6'));?></td>
-			<td><?php echo form_input(array('name'=>'tax','value'=>$item['tax'],'size'=>'4'));?></td>			
 		<?php 
 		}
 		else
 		{
 		?>
 			<td><?php echo $item['price']; ?></td>
-			<td><?php echo $item['tax']; ?></td>
 			<?php echo form_hidden('price',$item['price']); ?> 
-			<?php echo form_hidden('tax',$item['tax']); ?> 
 		<?php
 		} 
 		?>
 		<td><?php echo form_input(array('name'=>'quantity','value'=>$item['quantity'],'size'=>'2'));?></td>
-		<td><?php echo to_currency($item['price']*$item['quantity']*(1+($item['tax']/100))); ?></td>
+		<td><?php echo to_currency($item['price']*$item['quantity']); ?></td>
 		<td><?php echo form_submit("edit_item", $this->lang->line('sales_edit_item'));?></td>
 		</tr>
 		</form>
@@ -124,9 +120,11 @@ else
 		<div class="float_left" style="width:38%;"><?php echo $this->lang->line('sales_sub_total'); ?>:</div>
 		<div class="float_left" style="width:45%;font-weight:bold;"><?php echo $subtotal; ?></div>
 		
-		<div class="float_left" style='width:38%;'><?php echo $this->lang->line('sales_tax'); ?>:</div>
-		<div class="float_left" style="width:45%;font-weight:bold;"><?php echo $tax; ?></div>
-		
+		<?php foreach($taxes as $name=>$value) { ?>
+		<div class="float_left" style='width:38%;'><?php echo $name; ?>:</div>
+		<div class="float_left" style="width:45%;font-weight:bold;"><?php echo to_currency($value); ?></div>
+		<?php }; ?>
+
 		<div class="float_left" style='width:38%;'><?php echo $this->lang->line('sales_total'); ?>:</div>
 		<div class="float_left" style="width:45%;font-weight:bold;"><?php echo $total; ?></div>
 	</div>
@@ -138,7 +136,7 @@ else
 		<?php echo form_open("sales/complete",array('id'=>'finish_sale_form')); ?>
 		<label id="comment_label" for="comment"><?php echo $this->lang->line('common_comments'); ?>:</label>
 		<?php echo form_textarea(array('name'=>'comment','value'=>'','rows'=>'4','cols'=>'23'));?>
-		<?php echo "<div class='small_button' onclick=\"$('#finish_sale_form').submit();\" style='float:right;margin-top:5px;'><span>".$this->lang->line('sales_complete_sale')."</span></div>";
+		<?php echo "<div class='small_button' id='finish_sale_button' style='float:right;margin-top:5px;'><span>".$this->lang->line('sales_complete_sale')."</span></div>";
 		?>
 		</div>
 
@@ -201,6 +199,14 @@ $(document).ready(function()
     $('#customer').blur(function()
     {
     	$(this).attr('value',"<?php echo $this->lang->line('sales_start_typing_customer_name'); ?>");
+    });
+    
+    $("#finish_sale_button").click(function()
+    {
+    	if (confirm('<?php echo $this->lang->line("sales_confirm_finish_sale"); ?>'))
+    	{
+    		$('#finish_sale_form').submit();
+    	}
     });
 });
 
