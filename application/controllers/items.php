@@ -12,12 +12,12 @@ class Items extends Secure_area implements iData_controller
 	{
 		$config['base_url'] = site_url('?c=items&m=index');
 		$config['total_rows'] = $this->Item->count_all();
-		$config['per_page'] = '10'; 
+		$config['per_page'] = '500'; 
 		$this->pagination->initialize($config);
 		
 		$data['controller_name']=strtolower(get_class());
 		$data['form_width']=$this->get_form_width();
-		$data['manage_table']=get_items_manage_table($this->Item->get_all(10,$_GET["per_page"]),$this);
+		$data['manage_table']=get_items_manage_table($this->Item->get_all(500,$_GET["per_page"]),$this);
 		$this->load->view('items/manage',$data);
 	}
 

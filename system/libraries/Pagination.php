@@ -28,8 +28,8 @@ class CI_Pagination {
 
 	var $base_url			= ''; // The page we are linking to
 	var $total_rows  		= ''; // Total number of items (database results)
-	var $per_page	 		= 10; // Max number of items you want shown per page
-	var $num_links			=  2; // Number of "digit" links to show before/after the currently viewed page
+	var $per_page	 		= ''; // Max number of items you want shown per page
+	var $num_links			=  30; // Number of "digit" links to show before/after the currently viewed page
 	var $cur_page	 		=  0; // The current page being viewed
 	var $first_link   		= '&lsaquo; First';
 	var $next_link			= '&gt;';

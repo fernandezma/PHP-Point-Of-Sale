@@ -184,7 +184,6 @@ function show_hide_search_filter(search_filter_section, switchImgTag) {
 	<input type="hidden" name="search_section_state" id="search_section_state" value="<?php echo isset($search_section_state)?  ( ($search_section_state)? 'block' : 'none') : 'none';?>" />
 	</form>
 </div>
-<?php echo $this->pagination->create_links();?>
 <div id="table_action_header">
 	<ul>
 		<li class="float_left"><span><?php echo anchor("$controller_name/delete",$this->lang->line("common_delete"),array('id'=>'delete')); ?></span></li>
@@ -207,5 +206,6 @@ function show_hide_search_filter(search_filter_section, switchImgTag) {
 <div id="table_holder">
 <?php echo $manage_table; ?>
 </div>
+<div> <?php echo $this->pagination->create_links();?></div>
 <div id="feedback_bar"></div>
 <?php $this->load->view("partial/footer"); ?>
