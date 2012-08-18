@@ -27,3 +27,61 @@ function get_simple_date_ranges()
 			$start_of_time . '/' . 	$today						=> $CI->lang->line('reports_all_time'),
 		);
 }
+
+function get_months()
+{
+	$months = array();
+	for($k=1;$k<=12;$k++)
+	{
+		$cur_month = mktime(0, 0, 0, $k, 1, 2000);
+		$months[date("m", $cur_month)] = date("M",$cur_month);
+	}
+	
+	return $months;
+}
+
+function get_days()
+{
+	$days = array();
+	
+	for($k=1;$k<=31;$k++)
+	{
+		$cur_day = mktime(0, 0, 0, 1, $k, 2000);
+		$days[date('d',$cur_day)] = date('j',$cur_day);
+	}
+	
+	return $days;
+}
+
+function get_years()
+{
+	$years = array();
+	for($k=0;$k<10;$k++)
+	{
+		$years[date("Y")-$k] = date("Y")-$k;
+	}
+	
+	return $years;
+}
+
+function get_random_colors($how_many)
+{
+	$colors = array();
+	
+	for($k=0;$k<$how_many;$k++)
+	{
+		$colors[] = '#'.random_color();
+	}
+	
+	return $colors;
+}
+
+function random_color()
+{
+    mt_srand((double)microtime()*1000000);
+    $c = '';
+    while(strlen($c)<6){
+        $c .= sprintf("%02X", mt_rand(0, 255));
+    }
+    return $c;
+}

@@ -14,8 +14,16 @@ $(document).ready(function()
 </script>
 </head>
 <body>
-<h1>PHP Point Of Sale 10.0 Alpha 2</h1>
-<h3>Username/Password = admin/pointofsale
+<h1>PHP Point Of Sale 11.3</h1>
+<?php
+if ($_SERVER['HTTP_HOST'] == 'demo.phppointofsale.com')
+{
+?>
+<h2>Username = admin</h2>
+<h2>Password = pointofsale</h2>
+<?php
+}
+?>
 <?php echo form_open('login') ?>
 <div id="container">
 <?php echo validation_errors(); ?>

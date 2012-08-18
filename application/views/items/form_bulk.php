@@ -27,6 +27,25 @@ echo form_open('items/bulk_update/',array('id'=>'item_form'));
 </div>
 
 <div class="field_row clearfix">	
+<?php echo form_label($this->lang->line('items_supplier').':', 'supplier',array('class'=>'wide')); ?>
+	<div class='form_field'>
+	<?php echo form_dropdown('supplier_id', $suppliers, '');?>
+	</div>
+</div>
+
+
+<div class="field_row clearfix">	
+<?php echo form_label($this->lang->line('items_cost_price').':', 'cost_price',array('class'=>'wide')); ?>
+	<div class='form_field'>
+	<?php echo form_input(array(
+		'name'=>'cost_price',
+		'size'=>'8',
+		'id'=>'cost_price')
+	);?>
+	</div>
+</div>
+
+<div class="field_row clearfix">	
 <?php echo form_label($this->lang->line('items_unit_price').':', 'unit_price',array('class'=>'wide')); ?>
 	<div class='form_field'>
 	<?php echo form_input(array(
@@ -43,7 +62,7 @@ echo form_open('items/bulk_update/',array('id'=>'item_form'));
 	<?php echo form_input(array(
 		'name'=>'tax_names[]',
 		'id'=>'tax_name_1',
-		'size'=>'10',
+		'size'=>'8',
 		'value'=> isset($item_tax_info[0]['name']) ? $item_tax_info[0]['name'] : $this->lang->line('items_sales_tax'))
 	);?>
 	</div>
@@ -51,7 +70,7 @@ echo form_open('items/bulk_update/',array('id'=>'item_form'));
 	<?php echo form_input(array(
 		'name'=>'tax_percents[]',
 		'id'=>'tax_percent_name_1',
-		'size'=>'4',
+		'size'=>'3',
 		'value'=> isset($item_tax_info[0]['percent']) ? $item_tax_info[0]['percent'] : '')
 	);?>
 	%
@@ -64,7 +83,7 @@ echo form_open('items/bulk_update/',array('id'=>'item_form'));
 	<?php echo form_input(array(
 		'name'=>'tax_names[]',
 		'id'=>'tax_name_2',
-		'size'=>'10',
+		'size'=>'8',
 		'value'=> isset($item_tax_info[1]['name']) ? $item_tax_info[1]['name'] : '')
 	);?>
 	</div>
@@ -72,28 +91,28 @@ echo form_open('items/bulk_update/',array('id'=>'item_form'));
 	<?php echo form_input(array(
 		'name'=>'tax_percents[]',
 		'id'=>'tax_percent_name_2',
-		'size'=>'4',
+		'size'=>'3',
 		'value'=> isset($item_tax_info[1]['percent']) ? $item_tax_info[1]['percent'] : '')
 	);?>
 	%
 	</div>
 </div>
 <div class="field_row clearfix">	
-<?php echo form_label($this->lang->line('items_quantity').':', 'quantity',array('class'=>'wide')); ?>
-	<div class='form_field'>
-	<?php echo form_input(array(
-		'name'=>'quantity',
-		'id'=>'quantity')
-	);?>
-	</div>
-</div>
-
-<div class="field_row clearfix">	
 <?php echo form_label($this->lang->line('items_reorder_level').':', 'reorder_level',array('class'=>'wide')); ?>
 	<div class='form_field'>
 	<?php echo form_input(array(
 		'name'=>'reorder_level',
 		'id'=>'reorder_level')
+	);?>
+	</div>
+</div>
+
+<div class="field_row clearfix">	
+<?php echo form_label($this->lang->line('items_location').':', 'location',array('class'=>'wide')); ?>
+	<div class='form_field'>
+	<?php echo form_input(array(
+		'name'=>'location',
+		'id'=>'location')
 	);?>
 	</div>
 </div>
@@ -109,6 +128,29 @@ echo form_open('items/bulk_update/',array('id'=>'item_form'));
 	);?>
 	</div>
 </div>
+
+<div class="field_row clearfix">
+
+<?php echo form_label($this->lang->line('items_allow_alt_desciption').':', 'allow_alt_description',array('class'=>'wide')); ?>
+	<div class='form_field'>
+	<?php echo form_dropdown('allow_alt_description', $allow_alt_desciption_choices);?>
+
+	</div>
+
+</div>
+
+
+
+<div class="field_row clearfix">
+
+<?php echo form_label($this->lang->line('items_is_serialized').':', 'is_serialized',array('class'=>'wide')); ?>
+	<div class='form_field'>
+	<?php echo form_dropdown('is_serialized', $serialization_choices);?>
+
+	</div>
+
+</div>
+
 <?php
 echo form_submit(array(
 	'name'=>'submit',

@@ -1,3 +1,15 @@
+#report_list li ul li
+{
+	margin-left: 35px;
+}
+#report_date_range_simple
+{
+	margin-bottom: 3px;
+}
+.report 
+{
+	font-size: .85em;
+}
 #report_summary
 {
 	margin: 0 auto;
@@ -6,4 +18,9 @@
 
 #report_summary .summary_row
 {
+}
+
+#chart_wrapper
+{
+	text-align: center;
 }
