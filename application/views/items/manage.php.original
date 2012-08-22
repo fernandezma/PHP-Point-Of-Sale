@@ -50,12 +50,22 @@ $(document).ready(function()
     	$('#items_filter_form').submit();
     });
 
+    $("#is_serialized").click(function()
+    {
+    	$('#items_filter_form').submit();
+    });
+
+    $("#no_description").click(function()
+    {
+    	$('#items_filter_form').submit();
+    });
+
 });
 
 function init_table_sorting()
 {
 	//Only init if there is more than one row
-	if($('.tablesorter tbody tr').length = 0)
+	if($('.tablesorter tbody tr').length >1)
 	{
 		$("#sortable_table").tablesorter(
 		{
