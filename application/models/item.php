@@ -33,7 +33,7 @@ class Item extends Model
 		return $this->db->count_all_results();
 	}
 
-	function get_all_filtered($solo_dvd,$solo_cd,$low_inventory=0,$is_serialized=0,$no_description)
+	function get_all_filtered($limit, $offset,$solo_dvd,$solo_cd,$low_inventory=0,$is_serialized=0,$no_description)
 	{
 		$this->db->from('items');
 		if ($solo_dvd !=0 )
@@ -58,6 +58,9 @@ class Item extends Model
 		}
 		$this->db->where('deleted',0);
 		$this->db->order_by("name", "asc");
+                $this->db->limit($limit);
+                $this->db->offset($offset);
+
 		return $this->db->get();
 	}
 

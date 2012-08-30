@@ -22,6 +22,8 @@ class Items extends Secure_area implements iData_controller
 		$data['form_width']=$this->get_form_width();
 		$data['manage_table']=get_items_manage_table($this->Item->get_all(500,$porpagina),$this);
 		$this->load->view('items/manage',$data);
+
+		
 	}
 
 	function refresh()
@@ -33,6 +35,9 @@ class Items extends Secure_area implements iData_controller
 		$no_description=$this->input->post('no_description');
 
 		$data['search_section_state']=$this->input->post('search_section_state');
+		$config['per_page'] = '500';
+                $porpagina = "0";
+                $porpagina = $_GET["per_page"];
 
 		$data['solo_cd']=$this->input->post('solo_cd');
 		$data['solo_dvd']=$this->input->post('solo_dvd');
@@ -42,8 +47,9 @@ class Items extends Secure_area implements iData_controller
 		$data['no_description']=$this->input->post('no_description');
 		$data['controller_name']=strtolower(get_class());
 		$data['form_width']=$this->get_form_width();
-		$data['manage_table']=get_items_manage_table($this->Item->get_all_filtered($solo_dvd,$solo_cd,$low_inventory,$is_serialized,$no_description),$this);
+		$data['manage_table']=get_items_manage_table($this->Item->get_all_filtered(500,$porpagina,$solo_dvd,$solo_cd,$low_inventory,$is_serialized,$no_description),$this);
 		$this->load->view('items/manage',$data);
+
 	}
 
 	function find_item_info()

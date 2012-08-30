@@ -2,13 +2,15 @@
 padding: 0;
 float:right;
 }
+#nav a {
+text-decoration:none;
+}
+
 #nav li {
 display: inline;
 }
 #nav li a {
-font-family: Arial;
-font-size:11px;
-text-decoration: none;
+font-size:13px;
 float:left;
 padding: 10px;
 background-color: #2175bc;
@@ -16,6 +18,7 @@ color: #fff;
 }
 
 #nav li a:hover {
+color:#fff;
 background-color: #2586d7;
 padding-bottom:12px;
 }

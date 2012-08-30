@@ -54,11 +54,11 @@ class Receiving_lib
 		{
 			//try to get item id given an item_number
 			$item_id = $this->CI->Item->get_item_id($item_id);
-
+			
 			if(!$item_id)
 				return false;
 		}
-
+		mysql_query("UPDATE `phppostd`.`phppos_items` SET `deleted`='0'  WHERE `item_id`='$item_id'");
 		//Get items in the receiving so far.
 		$items = $this->get_cart();
 
@@ -106,6 +106,7 @@ class Receiving_lib
 			'quantity'=>$quantity,
             'discount'=>$discount,
 			'price'=>$price!=null ? $price: $this->CI->Item->get_info($item_id)->cost_price
+			
 			)
 		);
 

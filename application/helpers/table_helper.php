@@ -203,7 +203,9 @@ function get_items_manage_table($items,$controller)
 	$CI->lang->line('items_quantity'),
 	$CI->lang->line('items_location'),
 	$CI->lang->line('items_description'),
+	$CI->lang->line('items_supplier'),
 	$CI->lang->line('items_inventory')
+
 	);
 	
 	$table.='<thead><tr>';
@@ -251,16 +253,26 @@ function get_item_data_row($item,$controller)
 	$controller_name=strtolower(get_class($CI));
 	$width = $controller->get_form_width();
 
+ 	$sql="SELECT person_id,company_name FROM phppostd.phppos_suppliers;"; 
+    	$resource=mysql_query($sql) or die(mysql_error()); 
+    	while($array=mysql_fetch_assoc($resource)) 
+    	{
+	$idarray=$array['person_id'];
+	$array2[$idarray]=$array['company_name'];
+	} 
+	
+
 	$table_data_row='<tr>';
 	$table_data_row.="<td width='3%'><input type='checkbox' id='item_$item->item_id' value='".$item->item_id."'/></td>";
 	$table_data_row.='<td width="10%">'.$item->item_number.'</td>';
-	$table_data_row.='<td width="40%">'.$item->name.'</td>';
+	$table_data_row.='<td width="50%">'.$item->name.'</td>';
 	$table_data_row.='<td width="5%">'.$item->category.'</td>';
 	$table_data_row.='<td width="6%">'.to_currency($item->cost_price).'</td>';
 	$table_data_row.='<td width="6%">'.to_currency($item->unit_price).'</td>';
-	$table_data_row.='<td width="6%">'.$item->quantity.'</td>';
-	$table_data_row.='<td width="8%">'.$item->location.'</td>';
-	$table_data_row.='<td width="8%">'.$item->description.'</td>';
+	$table_data_row.='<td width="4%">'.$item->quantity.'</td>';
+	$table_data_row.='<td width="4%">'.$item->location.'</td>';
+	$table_data_row.='<td width="4%">'.$item->description.'</td>';
+	$table_data_row.='<td width="4%">'.$array2[$item->supplier_id].'</td>';
 	$table_data_row.='<td width="8%">'.anchor($controller_name."/view/$item->item_id/width:600", $CI->lang->line('common_edit'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_update'))).'&nbsp;'.anchor($controller_name."/inventory/$item->item_id/width:$width", $CI->lang->line('common_inv'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_count')))./*'</td>';//inventory count	
 	$table_data_row.='<td width="5%">'*/'&nbsp;'.anchor($controller_name."/count_details/$item->item_id/width:$width", $CI->lang->line('common_det'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_details_count'))).'</td>';//inventory details	
 	

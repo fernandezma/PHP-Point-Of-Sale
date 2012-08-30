@@ -34,7 +34,10 @@ $(document).ready(function()
 
         $(this).attr('href','index.php/items/export/'+selected.join(','));
     });
-
+    $("#distribuidora").click(function()
+    {
+        $('#items_filter_form').submit();
+    });
 
     $("#solo_cd").click(function()
     {
@@ -55,16 +58,15 @@ $(document).ready(function()
 function init_table_sorting()
 {
 	//Only init if there is more than one row
-	if($('.tablesorter tbody tr').length = 0)
+	if($('.tablesorter tbody tr').length = 3)
 	{
 		$("#sortable_table").tablesorter(
 		{
-			sortList: [[0]],
+			sortList: [[3]],
 			// sortList: [[1,0]],
 			headers:
 			{
-				0: { sorter: false},
-				9: { sorter: false}
+				10: { sorter: false}
 			}
 
 		});
@@ -120,20 +122,28 @@ function post_bulk_form_submit(response)
 
 <div id="table_action_header">
 <div style="float:right">
-	<?php echo form_open("$controller_name/refresh",array('id'=>'items_filter_form')); ?>
-	<?php echo form_label($this->lang->line('items_low_inventory_items').' '.':', 'low_inventory');?>
-	<?php echo form_checkbox(array('name'=>'low_inventory','id'=>'low_inventory','value'=>1,'checked'=> isset($low_inventory)?  ( ($low_inventory)? 1 : 0) : 0)).' | ';?>
+<ul>
+<li class="float_left">	<?php echo form_open("$controller_name/refresh",array('id'=>'items_filter_form')); ?></li>
+<li class="float_left">	<?php echo form_label($this->lang->line('items_low_inventory_items').' '.':', 'low_inventory');?></li>
+<li class="float_left">	<?php echo form_checkbox(array('name'=>'low_inventory','id'=>'low_inventory','value'=>1,'checked'=> isset($low_inventory)?  ( ($low_inventory)? 1 : 0) : 0)).' | ';?></li>
 
-	<?php echo form_label('CD', 'solo_cd');?>
-	<?php echo form_checkbox(array('name'=>'solo_cd','id'=>'solo_cd','value'=>1,'checked'=> isset($solo_cd)?  ( ($solo_cd)? 1 : 0) : 0)).' | ';?>
+<li class="float_left">	<?php echo form_label('CD', 'solo_cd');?></li>
+<li class="float_left">	<?php echo form_checkbox(array('name'=>'solo_cd','id'=>'solo_cd','value'=>1,'checked'=> isset($solo_cd)?  ( ($solo_cd)? 1 : 0) : 0)).' | ';?></li>
 
-        <?php echo form_label('DVD', 'solo_dvd');?>
-        <?php echo form_checkbox(array('name'=>'solo_dvd','id'=>'solo_dvd','value'=>1,'checked'=> isset($solo_dvd)?  ( ($solo_dvd)? 1 : 0) : 0));?>
+<li class="float_left">        <?php echo form_label('DVD', 'solo_dvd');?></li>
+<li class="float_left">        <?php echo form_checkbox(array('name'=>'solo_dvd','id'=>'solo_dvd','value'=>1,'checked'=> isset($solo_dvd)?  ( ($solo_dvd)? 1 : 0) : 0));?> </li>
 
+<li class="float_left"> <?php echo form_label('distribuidora', 'distribuidora');?> <select id="distribuidora" name="distribuidora">
+<option value="Milk">DBN</option>
+<option value="Cheese">LEF</option>
+<option value="Bread">OMA</option>
+</select> </li>
+	<?php echo $distribuidora ?>
+</ul>
 
 	<input type="hidden" name="search_section_state" id="search_section_state" value="<?php echo isset($search_section_state)?  ( ($search_section_state)? 'block' : 'none') : 'none';?>" />
 	</form></div>
-<div style="float:right">		
+<div style="float:left">		
 	<ul>
 		<li class="float_left"><span><?php echo anchor("$controller_name/delete",$this->lang->line("common_delete"),array('id'=>'delete')); ?></span></li>
 		<li class="float_left"><span><?php echo anchor("$controller_name/activar",$this->lang->line("common_active"),array('id'=>'activar')); ?></span></li>
@@ -152,10 +162,9 @@ function post_bulk_form_submit(response)
 	</ul>
 </div>
 </div>
-
+<div> <?php echo $this->pagination->create_links();?></div>
 <div id="table_holder">
 <?php echo $manage_table; ?>
 </div>
-<div> <?php echo $this->pagination->create_links();?></div>
 <div id="feedback_bar"></div>
 <?php $this->load->view("partial/footer"); ?>

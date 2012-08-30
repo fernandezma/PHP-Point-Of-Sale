@@ -2,10 +2,9 @@
 {
 	position:relative;
 	width:100%;
-	background-color:#EEEEEE;
+	background-color:#2175BC;
 	background-image:url(../images/checkbox_arrow.gif);
 	height:20px;
-	border-top:1px solid #CCCCCC;	
 	background-position:5px 10px;
 	background-repeat:no-repeat;	
 	padding:3px 0px 3px 0px;
@@ -16,30 +15,24 @@
 	list-style:none;
 	padding:0px;
 	margin:0px;
-	margin-left:15px;
 }
 
-#table_action_header ul li
-{
-	margin-left:8px;
-	margin-right:4px;
-	
-}
 
-#table_action_header ul li span
-{
-	background-color:#0a6184;
-	border:2px solid #DDDDDD;
-	font-size:14px;
-	padding:2px 5px 2px 5px;
-	
-}
 
 #table_action_header a
 {
 	text-decoration:none;
-	color:#FFF;	
+	color:#fff;
+	background-color:#2175BC;
+	padding:5px;
 }
+#table_action_header li a:hover {
+background-color: #2586d7;
+padding-bottom:12px;
+}
+
+
+
 
 #table_holder
 {
