@@ -119,32 +119,31 @@ function post_bulk_form_submit(response)
 
 
 </script>
-
 <div id="table_action_header">
-<div style="float:right">
+    <ul style="clear:both;">
+	<li class="float_left" > <?php echo form_open("$controller_name/refresh",array('id'=>'items_filter_form')); ?></li>
+	<li class="float_left" ><a style="<?php if ($low_inventory == 1){ echo "background-color:red;";}  ?>" href="javascript:void(0);" onclick="funcion;"><?php echo form_label($this->lang->line('items_low_inventory_items'), 'low_inventory');?></a></li>
+	<li class="float_left"  style="display:none"> <?php echo form_checkbox(array('name'=>'low_inventory','id'=>'low_inventory','value'=>1,'checked'=> isset($low_inventory)?  ( ($low_inventory)? 1 : 0) : 0)).' | ';?></li>
+	<li class="float_left" ><a style="<?php if ($solo_cd == 1){ echo "background-color:red;";}  ?>" href="javascript:void(0);" onclick="funcion;"><?php echo form_label('CD', 'solo_cd');?></a></li>
+	<li class="float_left"  style="display:none"><?php echo form_checkbox(array('name'=>'solo_cd','id'=>'solo_cd','value'=>1,'checked'=> isset($solo_cd)?  ( ($solo_cd)? 1 : 0) : 0)).' | ';?></li>
+	<li class="float_left" ><a style="<?php if ($solo_dvd == 1){ echo "background-color:red;";}  ?>" href="javascript:void(0);" onclick="funcion;"><?php echo form_label('DVD', 'solo_dvd');?></a></li>
+	<li class="float_left"  style="display:none"><?php echo form_checkbox(array('name'=>'solo_dvd','id'=>'solo_dvd','value'=>1,'checked'=> isset($solo_dvd)?  ( ($solo_dvd)? 1 : 0) : 0));?>
+</li>
+    </ul>
+
 <ul>
-<li class="float_left">	<?php echo form_open("$controller_name/refresh",array('id'=>'items_filter_form')); ?></li>
-<li class="float_left">	<?php echo form_label($this->lang->line('items_low_inventory_items').' '.':', 'low_inventory');?></li>
-<li class="float_left">	<?php echo form_checkbox(array('name'=>'low_inventory','id'=>'low_inventory','value'=>1,'checked'=> isset($low_inventory)?  ( ($low_inventory)? 1 : 0) : 0)).' | ';?></li>
 
-<li class="float_left">	<?php echo form_label('CD', 'solo_cd');?></li>
-<li class="float_left">	<?php echo form_checkbox(array('name'=>'solo_cd','id'=>'solo_cd','value'=>1,'checked'=> isset($solo_cd)?  ( ($solo_cd)? 1 : 0) : 0)).' | ';?></li>
-
-<li class="float_left">        <?php echo form_label('DVD', 'solo_dvd');?></li>
-<li class="float_left">        <?php echo form_checkbox(array('name'=>'solo_dvd','id'=>'solo_dvd','value'=>1,'checked'=> isset($solo_dvd)?  ( ($solo_dvd)? 1 : 0) : 0));?> </li>
-
-<li class="float_left"> <?php echo form_label('distribuidora', 'distribuidora');?> <select id="distribuidora" name="distribuidora">
-<option value="Milk">DBN</option>
-<option value="Cheese">LEF</option>
-<option value="Bread">OMA</option>
 </select> </li>
 	<?php echo $distribuidora ?>
 </ul>
 
 	<input type="hidden" name="search_section_state" id="search_section_state" value="<?php echo isset($search_section_state)?  ( ($search_section_state)? 'block' : 'none') : 'none';?>" />
-	</form></div>
-<div style="float:left">		
-	<ul>
+	</form>
+    <ul class="float_left" style="clear:both;">
+	<li class="float_left" id="boton"><a href="javascript:void(0);" onclick="funcion;">EMI</a></li>
+	<li class="float_left" id="boton"><a href="javascript:void(0);" onclick="funcion;">SONY</a></li>
+    </ul>
+	<ul style="clear:both;">
 		<li class="float_left"><span><?php echo anchor("$controller_name/delete",$this->lang->line("common_delete"),array('id'=>'delete')); ?></span></li>
 		<li class="float_left"><span><?php echo anchor("$controller_name/activar",$this->lang->line("common_active"),array('id'=>'activar')); ?></span></li>
 		<li class="float_left"><span><?php echo anchor("$controller_name/bulk_edit/width:$form_width",$this->lang->line("items_bulk_edit"),array('id'=>'bulk_edit','title'=>$this->lang->line('items_edit_multiple_items'))); ?></span></li>
@@ -154,17 +153,17 @@ function post_bulk_form_submit(response)
 		<li class="float_left"><span><?php echo anchor("$controller_name/view/-1/width:$form_width",$this->lang->line($controller_name.'_new'),array('class'=>'thickbox none','title'=>$this->lang->line($controller_name.'_new'))); ?>  </span></li>
 
 		<li class="float_right">
-		<img src='<?php echo base_url()?>images/spinner_small.gif' alt='spinner' id='spinner' />
 		<?php echo form_open("$controller_name/search",array('id'=>'search_form')); ?>
 		<input type="text" name ='search' id='search'/>
 		</form>
 		</li>
 	</ul>
 </div>
-</div>
-<div> <?php echo $this->pagination->create_links();?></div>
+
 <div id="table_holder">
 <?php echo $manage_table; ?>
+<?php echo $this->pagination->create_links();?>
 </div>
+
 <div id="feedback_bar"></div>
 <?php $this->load->view("partial/footer"); ?>
