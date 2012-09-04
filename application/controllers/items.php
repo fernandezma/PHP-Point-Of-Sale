@@ -21,8 +21,13 @@ class Items extends Secure_area implements iData_controller
 		$data['controller_name']=strtolower(get_class());
 		$data['form_width']=$this->get_form_width();
 		$data['manage_table']=get_items_manage_table($this->Item->get_all(500,$porpagina),$this);
-		$this->load->view('items/manage',$data);
+                foreach($this->Supplier->get_all()->result_array() as $row)
+                {
+                        $suppliers[$row['person_id']] = $row['company_name'] ;
+                }
 
+                $data['suppliers']=$suppliers;
+		$this->load->view('items/manage',$data);
 		
 	}
 
@@ -48,6 +53,12 @@ class Items extends Secure_area implements iData_controller
 		$data['controller_name']=strtolower(get_class());
 		$data['form_width']=$this->get_form_width();
 		$data['manage_table']=get_items_manage_table($this->Item->get_all_filtered(500,$porpagina,$solo_dvd,$solo_cd,$low_inventory,$is_serialized,$no_description),$this);
+		foreach($this->Supplier->get_all()->result_array() as $row)
+                {
+                        $suppliers[$row['person_id']] = $row['company_name'] ;
+                }
+    
+                $data['suppliers']=$suppliers;
 		$this->load->view('items/manage',$data);
 
 	}
@@ -155,7 +166,7 @@ class Items extends Secure_area implements iData_controller
                 {
                         $item_info = $this->Item->get_info($item_id);
 
-                        $result[] = array('name' =>$item_info->name, 'id'=> $item_id,'cost_price' =>$item_info->cost_price, 'item_number' =>$item_info->item_number, 'description' =>$item_info->description);
+                        $result[] = array('name' =>$item_info->name, 'id'=> $item_id,'cost_price' =>$item_info->cost_price, 'item_number' =>$item_info->item_number, 'category' =>$item_info->category, 'description' =>$item_info->description);
                 }
 
                 $data['items'] = $result;

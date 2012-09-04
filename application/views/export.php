@@ -9,7 +9,7 @@
 	unset($_SESSION['report_header']);
 	unset($_SESSION['report_values']);
 	//note that the header contain the three columns and its a array
-	$_SESSION['report_header']=array("CodigodeBarra","Artista-Disco","Cia", "Costo"); 
+	$_SESSION['report_header']=array("CodigodeBarra","Artista-Disco","Cia", "Soporte", "Costo"); 
    // now the excel data field should be two dimentational array with three column
 $count = 0;
 foreach($items as $item)
@@ -17,11 +17,13 @@ foreach($items as $item)
         $barcode = $item['item_number'];
         $text = $item['name'];
 	$compania = $item['description'];
+	$soporte = $item['category'];
 	$costo = $item['cost_price'];
    		echo $_SESSION['report_values'][$count][0]="$barcode"." ";
 		echo $_SESSION['report_values'][$count][1]="$text"." ";
 		echo $_SESSION['report_values'][$count][2]="$compania"." ";
-		echo $_SESSION['report_values'][$count][3]="$costo"." ";
+		echo $_SESSION['report_values'][$count][3]="$soporte"." ";
+		echo $_SESSION['report_values'][$count][4]="$costo"." ";
 		echo "<br>";
         $count++;
 }

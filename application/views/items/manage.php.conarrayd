@@ -38,6 +38,17 @@ $(document).ready(function()
     {
         $('#items_filter_form').submit();
     });
+
+<?php
+foreach ($suppliers as $row)
+{
+	echo "    $(\"#solo_$row\").click(function() \n";
+	echo "    { \n";
+	echo "         $('#items_filter_form').submit(); \n";
+	echo "    }); \n";
+}
+?>
+
     $("#solo_cd").click(function()
     {
         $('#items_filter_form').submit();

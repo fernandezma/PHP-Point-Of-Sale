@@ -52,6 +52,7 @@ if(isset($error))
 <th style="width:11%;"><?php echo $this->lang->line('recvs_quantity'); ?></th>
 <th style="width:11%;"><?php echo $this->lang->line('recvs_discount'); ?></th>
 <th style="width:15%;"><?php echo $this->lang->line('recvs_total'); ?></th>
+<th style="width:15%;">PrecioVneta</th>
 <th style="width:11%;"><?php echo $this->lang->line('recvs_edit'); ?></th>
 </tr>
 </thead>
@@ -101,11 +102,13 @@ else
 		<?php
         	echo form_input(array('name'=>'quantity','value'=>$item['quantity'],'size'=>'2'));
 		?>
+	
 		</td>
 
 
 		<td><?php echo form_input(array('name'=>'discount','value'=>$item['discount'],'size'=>'3'));?></td>
 		<td><?php echo to_currency($item['price']*$item['quantity']-$item['price']*$item['quantity']*$item['discount']/100); ?></td>
+		<td><?php echo $item['unit_price']; ?> </td>
 		<td><?php echo form_submit("edit_item", $this->lang->line('sales_edit_item'));?></td>
 		</tr>
 		</form>

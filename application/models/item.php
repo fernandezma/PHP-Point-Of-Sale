@@ -26,6 +26,13 @@ class Item extends Model
 		return $this->db->get();
 	}
 	
+	function distri()
+	{
+                $this->db->from('suppliers');
+                $this->db->where('deleted',0);
+                $this->db->order_by("name", "asc");
+                return $this->db->get();
+	}
 	function count_all()
 	{
 		$this->db->from('items');
