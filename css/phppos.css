@@ -10,18 +10,18 @@
 @import url(datepicker.css);
 @import url(editsale.css);
 
-body
-{
-	margin:0px;
-	padding:0px;
-	font-family: Arial, Helvetica,sans-serif; 
+body{
+    margin:0px;
+    padding:0px;
+    font-family: Arial, Helvetica,sans-serif; 
 }
 
-a.none
-{
-	text-decoration:none;
+a {
+    text-decoration:none;
 }
-
+li {
+    list-style:none;
+}
 
 #content_area_wrapper
 {
@@ -82,9 +82,9 @@ a.none
 
 #new_button
 {
-	position:absolute;
-	bottom:-5px;
-	right:0px;
+#	position:absolute;
+#	bottom:-5px;
+#	right:0px;
 }
 
 #spinner

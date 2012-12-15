@@ -1,3 +1,11 @@
+#NUEVOCODIGO
+
+
+
+
+
+
+
 .field_row 
 {
 	margin: 0 0 10px 0;
@@ -80,26 +88,6 @@ label.required
 	float:right;
 }
 
-.big_button
-{
-	position:relative;
-	width:119px;
-	height:45px;
-	background-image: url(../images/big_action_button.jpg);
-	background-repeat:no-repeat;
-	cursor:pointer;
-}
-
-.big_button span
-{
-	position:absolute;
-	width:100%;
-	top:35%;
-	color:#FFF;
-	font-size:13px;
-	font-weight:bold;
-	text-align:center;
-}
 
 
 .warning_message
@@ -132,6 +120,10 @@ label.required
 	background-color:#e1ffdd;
 	border:1px solid #2ca71c;
 	font-weight:bold;
+}
+
+#busqueda input {
+	width:400px;
 }
 
 input

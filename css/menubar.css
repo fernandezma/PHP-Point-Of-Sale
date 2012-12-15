@@ -1,117 +1,65 @@
-#nav {
-padding: 0;
-float:right;
-}
-#nav a {
-text-decoration:none;
-}
-
-#nav li {
-display: inline;
-}
-#nav li a {
-font-size:13px;
-float:left;
-padding: 10px;
-background-color: #2175bc;
-color: #fff;
+.gbar {
+    background-color:#444444;
+    display:table;
+    width:100%;
+    margin-bottom:5px;
 }
 
-#nav li a:hover {
-color:#fff;
-background-color: #2586d7;
-padding-bottom:12px;
+.gbar a {
+    color:#ccc;
+    font-weight:bold;
+    font-size:13px;
 }
 
-#menubar
-{
-	position:relative;
-	margin:0px;
-	padding:0px;
-	width:100%;
-	height:35px;
-	color:#FFFFFF;
-	text-align:left;
-	text-align:center;
-	background-color: #2175bc;
+.gbar a:hover {
+    color:#fff;
+    background-color: #444444;
+    border-bottom:3px solid #d84237;
+    padding-bottom:3px;
+}
+.gbar ul {
+    float:right;
+}
+.gbar ul li {
+    float:left;
+    padding:4px;
+    margin-left:5px;
 }
 
-#menubar_container
-{
-	position:relative;
-	margin:0 auto;
-	width:90%;
-	text-align:left;
-}
-
-.menu_item
-{
-	float:left;
-	width:65px;
-	height:100%;
-	text-align:center;	
+.subbar {
+    width:100%;
+    color:#6c6c6c;
+    display:table;
+    margin-bottom:5px;
 }
 
 
-#menubar a:link, #menubar a:visited, #menubar a
-{
-	color:#FFFFFF;
-	text-decoration:underline;
+.subbar a {
+    color:#ccc;
+    background-color: #444444;
+    padding:3px 6px;
+    font-size:13px;
 }
 
-#menubar a:hover
-{
-	color:#CCCCCC;
-	text-decoration:underline;	
+.subbar a:hover {
+    color:#fff;
+    background-color: #d84237;
+}
+.der {
+    float:right;	
+
+}
+.iz {
+    float:left;
 }
 
-.menu_item
-{
-	font-size:8pt;
+.subbar ul li {
+    float:left;
 }
 
-#menubar_company_info
-{
-	position:absolute;
-	left:0px;
-	top:18px;
-	width:250px;
-	height:55%;
+
+.titulo {
+    width:300px;
+    float:left;
 }
 
-#company_title
-{
-	font-size:14pt;
-	font-weight:bold;
-}
-
-#menubar_navigation
-{
-	position:relative;
-	width:82%;
-	left:200px;
-	top:8px;
-	height:45%;
-}
-
-#menubar_footer
-{
-	position:absolute;
-	top:80px;
-	left:0px;
-	height:17%;
-	padding-top:3px;
-	font-size:8pt;
-	font-weight:bold;
-}
-
-#menubar_date
-{
-	position:absolute;
-	top:80px;
-	right:0px;
-	height:17%;
-	padding-top:3px;
-	font-size:8pt;
-	font-weight:bold;
-}

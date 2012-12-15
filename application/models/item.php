@@ -40,7 +40,7 @@ class Item extends Model
 		return $this->db->count_all_results();
 	}
 
-	function get_all_filtered($limit, $offset,$solo_dvd,$solo_cd,$low_inventory=0,$is_serialized=0,$no_description)
+	function get_all_filtered($limit, $offset,$solo_dvd,$solo_cd,$dist_AFC,$dist_DBN,$dist_GUS,$dist_IND,$dist_LEF,$dist_MAR,$dist_OMA,$dist_PRC,$dist_PIN,$low_inventory=0,$is_serialized=0,$no_description)
 	{
 		$this->db->from('items');
 		if ($solo_dvd !=0 )
@@ -51,9 +51,49 @@ class Item extends Model
                 {
                         $this->db->where('category =','CD');
                 }
+		if ($dist_AFC !=0 )
+                {
+                        $this->db->where('supplier_id =','3');
+                }
+                if ($dist_DBN !=0 )
+                {
+                        $this->db->where('supplier_id =','2');
+                }
+                if ($dist_GUS !=0 )
+                {
+                        $this->db->where('supplier_id =','15');
+                }
+                if ($dist_IND !=0 )
+                {
+                        $this->db->where('supplier_id =','7');
+                }
+                if ($dist_LEF !=0 )
+                {
+                        $this->db->where('supplier_id =','8');
+                }
+                if ($dist_MAR !=0 )
+                {
+                        $this->db->where('supplier_id =','5');
+                }
+                if ($dist_OMA !=0 )
+                {
+                        $this->db->where('supplier_id =','4');
+                }
+                if ($dist_PTC !=0 )
+                {
+                        $this->db->where('supplier_id =','6');
+                }
+                if ($dist_PIN !=0 )
+                {
+                        $this->db->where('supplier_id =','9');
+                }		
+
 		if ($low_inventory !=0 )
 		{
-			$this->db->where('quantity <=','reorder_level');
+//			$fixwhere="quantity<reorder_level or quantity<=reorder_level";
+			$this->db->where('quantity <= reorder_level');
+//			$this->db->where($fixwhere);
+//			$this->db->or_where(
 		}
 		if ($is_serialized !=0 )
 		{
@@ -65,8 +105,8 @@ class Item extends Model
 		}
 		$this->db->where('deleted',0);
 		$this->db->order_by("name", "asc");
-                $this->db->limit($limit);
-                $this->db->offset($offset);
+//                $this->db->limit($limit);
+//                $this->db->offset($offset);
 
 		return $this->db->get();
 	}

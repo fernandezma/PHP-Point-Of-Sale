@@ -56,38 +56,24 @@ function post_person_form_submit(response)
 }
 </script>
 
-<div id="title_bar">
-	<div id="title" class="float_left"><?php echo $this->lang->line('common_list_of').' '.$this->lang->line('module_'.$controller_name); ?></div>
-	<div id="new_button">
-		<?php echo anchor("$controller_name/view/-1/width:$form_width",
-		"<div class='big_button' style='float: left;'><span>".$this->lang->line($controller_name.'_new')."</span></div>",
-		array('class'=>'thickbox none','title'=>$this->lang->line($controller_name.'_new')));
-		?>
-		<?php if ($controller_name =='customers') {?>
-			<?php echo anchor("$controller_name/excel_import/width:$form_width",
-			"<div class='big_button' style='float: left;'><span>Excel Import</span></div>",
-				array('class'=>'thickbox none','title'=>'Import Items from Excel'));
-			?>	
-		<?php } ?>
-	</div>
+<div class="subbar">
+    <div class="titulo iz"><?php echo $this->lang->line('common_list_of').' '.$this->lang->line('module_'.$controller_name); ?></div>
+    <div class="buscar der"><?php echo form_open("$controller_name/search",array('id'=>'search_form')); ?><input type="text" name ='search' id='search'/></form></div>
 </div>
+
+<div class="subbar">
+    <ul class="iz">
+        <li><?php echo anchor("$controller_name/delete",$this->lang->line("common_delete"),array('id'=>'delete')); ?></li>
+        <li><a href="#" id="email"><?php echo $this->lang->line("common_email");?></a></li>
+    </ul>
+
+    <ul class="der">
+        <li><?php echo anchor("$controller_name/view/-1/width:$form_width", $this->lang->line($controller_name.'_new'),array('class'=>'thickbox none','title'=>$this->lang->line($controller_name.'_new')));?></li>
+        <li><?php if ($controller_name =='customers') {?><?php echo anchor("$controller_name/excel_import/width:$form_width","Excel Import",array('class'=>'','title'=>'Import Items from Excel'));?><?php } ?></li>
+    </ul>
+</div>
+
 <?php echo $this->pagination->create_links();?>
-<div id="table_action_header">
-	<ul>
-		<li class="float_left"><span><?php echo anchor("$controller_name/delete",$this->lang->line("common_delete"),array('id'=>'delete')); ?></span></li>
-		<li class="float_left"><span><a href="#" id="email"><?php echo $this->lang->line("common_email");?></a></span></li>
-		<?php if ($mailchimp) { ?>
-		<li class="float_left"><span><a href='javascript:list_manage("<?php echo site_url($controller_name."/listmanage")?>", "<?php echo $this->lang->line("common_list_manage_none_added")?>");'>
-	                                  <?php echo $this->lang->line("common_list_manage")?></a></span></li>
-		<?php } ?>
-		<li class="float_right">
-		<img src='<?php echo base_url()?>images/spinner_small.gif' alt='spinner' id='spinner' />
-		<?php echo form_open("$controller_name/search",array('id'=>'search_form')); ?>
-		<input type="text" name ='search' id='search'/>
-		</form>
-		</li>
-	</ul>
-</div>
 <div id="table_holder">
 <?php echo $manage_table; ?>
 </div>

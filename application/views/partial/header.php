@@ -29,38 +29,15 @@
 	<script src="<?php echo base_url();?>js/date.js" type="text/javascript" language="javascript" charset="UTF-8"></script>
 	<script src="<?php echo base_url();?>js/datepicker.js" type="text/javascript" language="javascript" charset="UTF-8"></script>
 	
-<style type="text/css">
-html {
-    overflow: auto;
-}
-</style>
-
 </head>
 <body>
-<div id="menubar">
-	<div id="menubar_container">
-		<div style="float:left;font-family:Arial;font-size:12px;margin-top:10px;">
-		</form><?php echo date('F d, Y h:i a') ?> 
-                <?php echo $this->lang->line('common_welcome')." $user_info->first_name $user_info->last_name! | "; ?>
-                <?php echo anchor("home/logout",$this->lang->line("common_logout")); ?>
-                </div>
-		
-		<ul id="nav">
-		<?php foreach($allowed_modules->result() as $module){ if ($module->module_id == 'mailchimpdash' && !$this->config->item('mc_api_key')) { continue; } ?>
-		<li><a href="<?php echo site_url("$module->module_id");?>"><?php echo $this->lang->line("module_".$module->module_id) ?></a></li>
-		<?php } ?>
-		</ul>
-
-		<div id="menubar_footer">
-		<?php echo $this->lang->line('common_welcome')." $user_info->first_name $user_info->last_name! | "; ?>
-		<?php echo anchor("home/logout",$this->lang->line("common_logout")); ?>
-		</div>
-
-		<div id="menubar_date">
-		<?php echo date('F d, Y h:i a') ?>
-		</div>
-
-	</div>
+<div class="gbar">
+    <ul>
+	<?php foreach($allowed_modules->result() as $module){ if ($module->module_id == 'mailchimpdash' && !$this->config->item('mc_api_key')) { continue; } ?>
+	<li><a href="<?php echo site_url("$module->module_id");?>"><?php echo $this->lang->line("module_".$module->module_id) ?></a></li>
+	<?php } ?>
+	<li><?php echo anchor("home/logout",$this->lang->line("common_logout")); ?></li>
+    </ul>
 </div>
 <div id="content_area_wrapper">
 <div id="content_area">

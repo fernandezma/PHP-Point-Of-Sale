@@ -35,24 +35,39 @@ class Items extends Secure_area implements iData_controller
 	{
 		$solo_dvd=$this->input->post('solo_dvd');
 		$solo_cd=$this->input->post('solo_cd');
+		$dist_AFC=$this->input->post('dist_AFC');
+		$dist_DBN=$this->input->post('dist_DBN');
+		$dist_GUS=$this->input->post('dist_GUS');
+		$dist_IND=$this->input->post('dist_IND');
+		$dist_LEF=$this->input->post('dist_LEF');
+		$dist_MAR=$this->input->post('dist_MAR');
+		$dist_OMA=$this->input->post('dist_OMA');
+		$dist_PTC=$this->input->post('dist_PTC');
+		$dist_PIN=$this->input->post('dist_PIN');
 		$low_inventory=$this->input->post('low_inventory');
 		$is_serialized=$this->input->post('is_serialized');
 		$no_description=$this->input->post('no_description');
-
 		$data['search_section_state']=$this->input->post('search_section_state');
 		$config['per_page'] = '500';
                 $porpagina = "0";
                 $porpagina = $_GET["per_page"];
-
 		$data['solo_cd']=$this->input->post('solo_cd');
 		$data['solo_dvd']=$this->input->post('solo_dvd');
-
+		$data['dist_AFC']=$this->input->post('dist_AFC');
+		$data['dist_DBN']=$this->input->post('dist_DBN');
+		$data['dist_GUS']=$this->input->post('dist_GUS');
+		$data['dist_IND']=$this->input->post('dist_IND');
+		$data['dist_LEF']=$this->input->post('dist_LEF');
+		$data['dist_MAR']=$this->input->post('dist_MAR');
+		$data['dist_OMA']=$this->input->post('dist_OMA');
+		$data['dist_PTC']=$this->input->post('dist_PTC');
+		$data['dist_PIN']=$this->input->post('dist_PIN');
 		$data['low_inventory']=$this->input->post('low_inventory');
 		$data['is_serialized']=$this->input->post('is_serialized');
 		$data['no_description']=$this->input->post('no_description');
 		$data['controller_name']=strtolower(get_class());
 		$data['form_width']=$this->get_form_width();
-		$data['manage_table']=get_items_manage_table($this->Item->get_all_filtered(500,$porpagina,$solo_dvd,$solo_cd,$low_inventory,$is_serialized,$no_description),$this);
+		$data['manage_table']=get_items_manage_table($this->Item->get_all_filtered(500,$porpagina,$solo_dvd,$solo_cd,$dist_AFC,$dist_DBN,$dist_GUS,$dist_IND,$dist_LEF,$dist_MAR,$dist_OMA,$dist_PRC,$dist_PIN,$low_inventory,$is_serialized,$no_description),$this);
 		foreach($this->Supplier->get_all()->result_array() as $row)
                 {
                         $suppliers[$row['person_id']] = $row['company_name'] ;
