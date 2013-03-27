@@ -2,7 +2,7 @@
 <form action='shutdown.php' method='post'><input type='submit' name='submit' style='background:red;border:0' value='>>>  >> > APAGAR SERVIDOR < <<  <<<'></form>
 </div>
 
-
+<form action='exportartodo.php' method='post'><input type='submit' name='submit' value='Exportar todo el catalogo'></form>
 <?php $this->load->view("partial/header"); ?>
 <div id="page_title"><?php echo $this->lang->line('module_config'); ?></div>
 <?php
