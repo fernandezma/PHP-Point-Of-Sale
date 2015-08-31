@@ -1,0 +1,39 @@
+<?php 
+// DO NOT REMOVE
+require_once(DOKU_TPLINC . 'tpl_functions.php');
+?>
+    <div id="header">
+      <div class="logo">
+
+            <?php
+            //include userdefined logo or show text-headline
+            echo "<div id=\"tmpl_header_logo\">\n                <a href=\"".DOKU_BASE."\" name=\"dokuwiki__top\" id=\"dokuwiki__top\" accesskey=\"h\"";
+            if (file_exists(DOKU_TPLINC."user/logo.png")){
+                //user defined PNG
+                echo "><img src=\"".DOKU_TPL."user/logo.png\" id=\"tmpl_header_logo_img\" alt=\"\"/></a>";
+            }elseif (file_exists(DOKU_TPLINC."user/logo.gif")){
+                //user defined GIF
+                echo "><img src=\"".DOKU_TPL."user/logo.gif\" id=\"tmpl_header_logo_img\" alt=\"\"/></a>";
+            }elseif (file_exists(DOKU_TPLINC."user/logo.jpg")){
+                //user defined JPG
+                echo "><img src=\"".DOKU_TPL."user/logo.jpg\" id=\"tmpl_header_logo_img\" alt=\"\"/></a>";
+            }else{
+                //default
+                echo " class=\"tmpl_header_logo_txt\">".hsc($conf["title"])."</a>";
+            }
+            echo "\n            </div>\n";
+            ?>
+        </div>
+
+      <?php tpl_navigation() ?>
+    </div>
+
+    <div id="search">
+      <?php tpl_searchform()?>
+    </div>
+
+    <div class="actions">
+      <?php tpl_actions()?>
+    </div>
+
+<br><br><a href="http://www.smithrobertson.net/" title="Dokuwiki Template designed by Alan Smith Robertson"><img src="lib/tpl/mystyle/images/link_icon.png" width="10" height="5" alt="Dokuwiki Template designed by Alan Smith Robertson" /></a>

@@ -1,0 +1,48 @@
+##### Linking #####
+#ENTITY        emech
+#LINKPASS      abc123
+#LINKPORT      49152
+#LINK          hismech a1b2c3 mech.host.net 49152
+#LINK          hermech abcdefg 0 0
+AUTOLINK
+
+##### Server List ####
+
+SERVER irc.fuknfreak.com 8520
+
+##### Bot 1 Configuration #####
+
+NICK          multiflood
+USERFILE      1
+CMDCHAR       .
+LOGIN         multi
+IRCNAME       improved bY siko
+SERVICE       
+MODES         +ix-ws
+#VIRTUAL       my.silly.vanity.domain.com
+#NOSEEN
+
+HASONOTICE      1       # Yes for Undernet.
+TOG CC          1       # We want the bot to require command character
+TOG CLOAK       1       # Ignore CTCP's from non-users? Yes.
+TOG SPY         1       # Tell who is executing what in the partyline.
+SET OPMODES     6       # How many modes in a line? 6 on undernet...
+SET BANMODES    6       # How many bans in a line? 6 on undernet...
+SET CTIMEOUT    20      # Server connection timeout
+SET CDELAY      20      # Delay between connection attempts
+
+CHANNEL         #ddos  # Channel name
+TOG PUB         1       # Allow public(in-channel) commands? Yes.
+TOG MASS        1       # Do mass-mode/kick/ban checks...
+TOG SHIT        1       # Activate the shitlist for this channel
+TOG PROT        1       # Activate protection of users
+TOG ENFM        0       # Dont enforce channel modes.
+SET MDL         5       # How many -o before killing the guy?
+SET MKL         5       # How many kicks?
+SET MBL         5       # And how many Bans?
+SET MPL         1       # What to do with massmoders?
+#                       0 = nothing,
+#                       1 = kick the bastard,
+#                       2 = kickban 'em,
+#                       3 = kickban & shitlist them.
+##### END BOT 1 #####

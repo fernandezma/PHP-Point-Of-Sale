@@ -1,0 +1,10 @@
+rm -f ../nick
+rm -f *.pid
+rm -f *.session
+rm -f *.seen
+rm -f *.levels
+export PATH=.:$PATH
+mech
+rm -rf *.seen
+exit
+
